@@ -8,9 +8,12 @@ import ProfileEdit from "./ProfileEdit";
 const Profile = () => {
   const name = useUserStore((state) => state.name);
   const email = useUserStore((state) => state.email);
+  const unityid = useUserStore((state) => state.unityid);
+  const studentid = useUserStore((state) => state.studentid);
   const address = useUserStore((state) => state.address);
   const role = useUserStore((state) => state.role);
   const skills = useUserStore((state) => state.skills);
+  const projects = useUserStore((state) => state.projects);
   const experience = useUserStore((state) => state.experience);
   const phonenumber = useUserStore((state) => state.phonenumber);
   const affiliation = useUserStore((state) => state.affiliation);
@@ -65,20 +68,32 @@ const Profile = () => {
                 <span className="text-gray-500">{email || " -- "}</span>
               </div>
               <div>
-                <span className="text-lg">Role: </span>
-                <span className="text-gray-500">{role || " -- "}</span>
+                <span className="text-lg">Unityid: </span>
+                <span className="text-gray-500">{unityid || " -- "}</span>
               </div>
               <div>
-                <span className="text-lg">Address: </span>
-                <span className="text-gray-500">{address || " -- "}</span>
+                <span className="text-lg">Studentid: </span>
+                <span className="text-gray-500">{studentid || " -- "}</span>
+              </div>
+              <div>
+                <span className="text-lg">Role: </span>
+                <span className="text-gray-500">{role || " -- "}</span>
               </div>
               <div>
                 <span className="text-lg">Skills: </span>
                 <span className="text-gray-500">{skills || " -- "}</span>
               </div>
               <div>
+                <span className='text-lg'>Projects: </span>
+                <span className="text-gray-500">{projects || " -- "}</span>
+              </div>
+              <div>
                 <span className="text-lg">Experience: </span>
                 <span className="text-gray-500">{experience || " -- "}</span>
+              </div>
+              <div>
+                <span className="text-lg">Address: </span>
+                <span className="text-gray-500">{address || " -- "}</span>
               </div>
               <div>
                 <span className="text-lg">Phone Number: </span>
@@ -115,9 +130,12 @@ const Profile = () => {
               props={{
                 name,
                 email,
+                unityid,
+                studentid,
                 address,
                 role,
                 skills,
+                projects,
                 experience,
                 phonenumber,
                 affiliation,
