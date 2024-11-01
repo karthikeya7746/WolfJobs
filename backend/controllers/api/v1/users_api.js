@@ -159,6 +159,7 @@ module.exports.editProfile = async function (req, res) {
 
     user.name = req.body.name;
     user.password = req.body.password;
+    user.unityid = req.body.unityid;
     user.role = req.body.role;
     user.address = req.body.address;
     user.phonenumber = req.body.phonenumber;
@@ -168,6 +169,7 @@ module.exports.editProfile = async function (req, res) {
     // user.dob = req.body.dob;
     check = req.body.skills;
     user.skills = check;
+    user.projects = req.body.projects;
     user.experience = req.body.experience;
     user.save();
     res.set("Access-Control-Allow-Origin", "*");
