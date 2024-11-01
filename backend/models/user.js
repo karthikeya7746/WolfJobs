@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
     },
     unityid: {
       type: String,
-      required: true,
+      default: "",
     },
     role: {
       type: String,
