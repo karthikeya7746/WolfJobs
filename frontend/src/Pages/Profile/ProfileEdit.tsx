@@ -23,6 +23,7 @@ type FormValues = {
   address: string;
   role: string;
   skills: string;
+  experience: string;
   phonenumber: string;
   availability: string;
   gender: string;
@@ -36,6 +37,7 @@ const ProfileEdit = ({ props }: { props: any }) => {
     address,
     role,
     skills,
+    experience,
     phonenumber,
     availability,
     gender,
@@ -49,6 +51,7 @@ const ProfileEdit = ({ props }: { props: any }) => {
       address: address,
       role,
       skills: skills,
+      experience: experience,
       phonenumber: phonenumber,
       availability: availability,
       gender: gender,
@@ -79,6 +82,7 @@ const ProfileEdit = ({ props }: { props: any }) => {
       hours: data.hours,
       gender: data.gender,
       skills: data.skills,
+      experience: data.experience,
       phonenumber: data.phonenumber,
     };
 
@@ -173,6 +177,21 @@ const ProfileEdit = ({ props }: { props: any }) => {
               {...register("skills")}
               error={!!errors.skills}
               helperText={errors.skills?.message}
+              sx={{
+                "& label": { paddingLeft: (theme) => theme.spacing(1) },
+                "& input": { paddingLeft: (theme) => theme.spacing(2.5) },
+                "& fieldset": {
+                  paddingLeft: (theme) => theme.spacing(1.5),
+                  borderRadius: "10px",
+                },
+              }}
+            />
+             <TextField
+              label="Experience"
+              type="text"
+              {...register("experience")}
+              error={!!errors.experience}
+              helperText={errors.experience?.message}
               sx={{
                 "& label": { paddingLeft: (theme) => theme.spacing(1) },
                 "& input": { paddingLeft: (theme) => theme.spacing(2.5) },

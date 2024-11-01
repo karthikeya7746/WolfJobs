@@ -9,6 +9,7 @@ type UserState = {
   role: string;
   dob: string;
   skills: string;
+  experience: string;
   phonenumber: string;
   id: string;
   availability: string;
@@ -28,6 +29,7 @@ type UserAction = {
   updateRole: (name: UserState["role"]) => void;
   updateDob: (name: UserState["dob"]) => void;
   updateSkills: (name: UserState["skills"]) => void;
+  updateExperience: (name: UserState["experience"]) => void;
   updatePhonenumber: (name: UserState["phonenumber"]) => void;
   updateId: (name: UserState["id"]) => void;
   updateAvailability: (name: UserState["availability"]) => void;
@@ -47,6 +49,7 @@ export const useUserStore = create<UserState & UserAction>()((set) => ({
   role: "",
   dob: "",
   skills: "",
+  experience: "",
   phonenumber: "",
   id: "",
   availability: "",
@@ -77,6 +80,9 @@ export const useUserStore = create<UserState & UserAction>()((set) => ({
   },
   updateSkills: (skills: string) => {
     set(() => ({ skills: skills }));
+  },
+  updateExperience: (experience: string) => {
+    set(() => ({ experience: experience}));
   },
   updatePhonenumber: (phonenumber: string) => {
     set(() => ({ phonenumber: phonenumber }));

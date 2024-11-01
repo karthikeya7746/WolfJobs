@@ -11,6 +11,7 @@ const Profile = () => {
   const address = useUserStore((state) => state.address);
   const role = useUserStore((state) => state.role);
   const skills = useUserStore((state) => state.skills);
+  const experience = useUserStore((state) => state.experience);
   const phonenumber = useUserStore((state) => state.phonenumber);
   const affiliation = useUserStore((state) => state.affiliation);
   const availability = useUserStore((state) => state.availability);
@@ -76,6 +77,10 @@ const Profile = () => {
                 <span className="text-gray-500">{skills || " -- "}</span>
               </div>
               <div>
+                <span className="text-lg">Experience: </span>
+                <span className="text-gray-500">{experience || " -- "}</span>
+              </div>
+              <div>
                 <span className="text-lg">Phone Number: </span>
                 <span className="text-gray-500">{phonenumber || " -- "}</span>
               </div>
@@ -113,6 +118,7 @@ const Profile = () => {
                 address,
                 role,
                 skills,
+                experience,
                 phonenumber,
                 affiliation,
                 availability,

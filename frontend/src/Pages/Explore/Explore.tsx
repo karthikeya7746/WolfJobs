@@ -19,6 +19,7 @@ const Explore = () => {
   const updateRole = useUserStore((state) => state.updateRole);
   const updateDob = useUserStore((state) => state.updateDob);
   const updateSkills = useUserStore((state) => state.updateSkills);
+  const updateExperience = useUserStore((state) => state.updateExperience);
   const updatePhonenumber = useUserStore((state) => state.updatePhonenumber);
   const updateId = useUserStore((state) => state.updateId);
   const updateAvailability = useUserStore((state) => state.updateAvailability);
@@ -84,6 +85,7 @@ const Explore = () => {
       updateRole(userInfo.role);
       updateDob(userInfo.dob);
       updateSkills(userInfo.skills);
+      updateExperience(userInfo.experience);
       updatePhonenumber(userInfo.phonenumber);
       updateId(userInfo._id);
       updateAvailability(userInfo.availability);

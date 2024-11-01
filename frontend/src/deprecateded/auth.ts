@@ -30,6 +30,7 @@ export function signup(
   role: string,
   affiliation: string,
   skills: string,
+  experience: string,
   navigate: any
 ) {
   const url = signupURL;
@@ -45,6 +46,7 @@ export function signup(
       name,
       role,
       skills,
+      experience,
       affiliation,
     }),
   })
