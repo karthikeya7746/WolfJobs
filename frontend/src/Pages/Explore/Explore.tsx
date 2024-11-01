@@ -8,8 +8,16 @@ import JobsListView from "../../components/Job/JobListView";
 import JobDetailView from "../../components/Job/JobDetailView";
 import { useJobStore } from "../../store/JobStore";
 import { useApplicationStore } from "../../store/ApplicationStore";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 
-const Explore = () => {
+const Explore = () => 
+{
   const navigate = useNavigate();
 
   const updateName = useUserStore((state) => state.updateName);
@@ -44,7 +52,8 @@ const Explore = () => {
   const [sortAlphabeticallyByCity, setSortAlphabeticallyByCity] =
     useState(false);
   const [sortByEmploymentType, setSortByEmploymentType] = useState(false);
-  const [showOpenJobs, setShowOpenJobs] = useState(true);
+  const [showOpenJobs, setShowOpenJobs] = useState(true); // true for open jobs, false for closed jobs
+  const [jobType, setJobType] = useState("all-jobs");
 
   // New state for filters
   const [filterLocation, setFilterLocation] = useState("");
@@ -152,6 +161,11 @@ const Explore = () => {
         return a.type.localeCompare(b.type);
       });
     }
+    if (jobType !== "all-jobs") {
+      updatedList = updatedList.filter((job) =>
+        job.type.toLowerCase().includes(jobType.toLowerCase())
+      );
+    }
 
     if (filterLocation !== "") {
       updatedList = updatedList.filter((job) =>
@@ -193,6 +207,7 @@ const Explore = () => {
     filterMinSalary,
     filterMaxSalary,
     filterEmploymentType,
+    jobType,
   ]);
 
   return (
@@ -208,35 +223,68 @@ const Explore = () => {
               className="w-full p-2"
             />
           </div>
-
-          {/* Button container with flex layout */}
-          <div className="flex flex-row space-x-2 mb-4">
-            <button onClick={handleSortChange} className="p-2 border">
+          <div className="p-4 flex items-center gap-4">
+            <button
+              onClick={handleSortChange}
+              className="p-2 ml-2 border border-black rounded-lg"
+            >
               {sortHighestPay
                 ? "Sort by High Pay : On"
                 : "Sort by Highest Pay : Off"}
             </button>
-            <button onClick={handleSortCityChange} className="p-2 border">
+            <button
+              onClick={handleSortCityChange}
+              className="p-2 ml-2 border border-black rounded-lg"
+            >
               {sortAlphabeticallyByCity
                 ? "Sort by City : On"
                 : "Sort by City : Off"}
             </button>
             <button
               onClick={handleSortEmploymenyTypeChange}
-              className="p-2 border"
+              className="p-2 ml-2 border border-black rounded-lg"
             >
               {sortByEmploymentType
                 ? "Sort by Employment Type : On"
                 : "Sort by Employment Type : Off"}
             </button>
-            <button onClick={toggleJobStatus} className="p-2 border">
+            <button onClick={toggleJobStatus} className="p-2 ml-2 border border-black rounded-lg">
               {showOpenJobs ? "Show Closed Jobs" : "Show Open Jobs"}
             </button>
+            <div style={{ gridTemplateRows: "auto auto" }}>
+              <FormControl sx={{ minWidth: 150 }}>
+                <InputLabel id="role-id">Job Type</InputLabel>
+
+                <Select
+                  value={jobType}
+                  labelId="role-id"
+                  label="Job Type"
+                  id="role"
+                  onChange={(e: SelectChangeEvent) => {
+                    setJobType(e.target.value);
+                  }}
+                  sx={{
+                    height: "40px",
+                    "& label": { paddingLeft: (theme) => theme.spacing(1) },
+                    "& input": { paddingLeft: (theme) => theme.spacing(2.5) },
+                    "& fieldset": {
+                      paddingLeft: (theme) => theme.spacing(0.75),
+                      borderRadius: "10px",
+                      borderColor: "black",
+                    },
+                  }}
+                >
+                  <MenuItem value={"all-jobs"}>All Jobs</MenuItem>
+                  <MenuItem value={"full-time"}>Full Time</MenuItem>
+                  <MenuItem value={"part-time"}>Part Time</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
             {/* Filter Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowFilterDropdown(!showFilterDropdown)}
-                className="p-2 border"
+                className="p-2 ml-2 border border-black rounded-lg"
               >
                 Filters
               </button>
@@ -301,20 +349,33 @@ const Explore = () => {
                   </button>
                 </div>
               )}
-            </div>
+            {/* <button
+              onClick={toggleJobStatus}
+              className="p-2 ml-2 border border-black rounded-lg"
+            >
+              {showOpenJobs ? "Show Closed Jobs" : "Show Open Jobs"}
+            </button> */}
           </div>
         </div>
 
         <div className="flex flex-row" style={{ height: "calc(100vh - 72px)" }}>
-          <JobsListView jobsList={filteredJobList} />
+          <JobsListView
+            jobsList={filteredJobList}
+            title={
+              jobType === "part-time"
+                ? "Part time"
+                : jobType === "full-time"
+                ? "Full time"
+                : "All Jobs"
+            }
+          />
           <JobDetailView />
         </div>
+      </div>
       </div>
     </>
   );
 };
 
 export default Explore;
-function updateExperience(experience: any) {
-  throw new Error("Function not implemented.");
-}
+

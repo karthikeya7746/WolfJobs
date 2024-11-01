@@ -53,6 +53,10 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  saved:{
+    type: Boolean,
+    deafult: false
+  }
 });
 
 const Job = mongoose.model("Job", jobSchema);
