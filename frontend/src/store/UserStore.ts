@@ -6,9 +6,13 @@ type UserState = {
   email: string;
   password: string;
   address: string;
+  unityid: string;
+  studentid: string;
   role: string;
   dob: string;
   skills: string;
+  projects: string;
+  experience: string;
   phonenumber: string;
   id: string;
   availability: string;
@@ -24,10 +28,14 @@ type UserAction = {
   updateName: (name: UserState["name"]) => void;
   updateEmail: (name: UserState["email"]) => void;
   updatePassword: (name: UserState["email"]) => void;
+  updateUnityid: (unityid: UserState["unityid"]) => void;
+  updateStudentid: (studentid: UserState["studentid"]) => void;
   updateAddress: (name: UserState["address"]) => void;
   updateRole: (name: UserState["role"]) => void;
   updateDob: (name: UserState["dob"]) => void;
   updateSkills: (name: UserState["skills"]) => void;
+  updateProjects: (name: UserState["skills"]) => void;
+  updateExperience: (name: UserState["experience"]) => void;
   updatePhonenumber: (name: UserState["phonenumber"]) => void;
   updateId: (name: UserState["id"]) => void;
   updateAvailability: (name: UserState["availability"]) => void;
@@ -43,10 +51,14 @@ export const useUserStore = create<UserState & UserAction>()((set) => ({
   name: "",
   email: "",
   password: "",
+  unityid: "",
+  studentid: "",
   address: "",
   role: "",
   dob: "",
   skills: "",
+  projects: "",
+  experience: "",
   phonenumber: "",
   id: "",
   availability: "",
@@ -63,6 +75,12 @@ export const useUserStore = create<UserState & UserAction>()((set) => ({
   updateEmail: (email: string) => {
     set(() => ({ email: email }));
   },
+  updateUnityid: (unityid: string) => {
+    set(() => ({ unityid : unityid}));
+  },
+  updateStudentid: (studentid: string) => {
+    set(() => ({ studentid: studentid}))
+  },
   updatePassword: (password: string) => {
     set(() => ({ password: password }));
   },
@@ -77,6 +95,12 @@ export const useUserStore = create<UserState & UserAction>()((set) => ({
   },
   updateSkills: (skills: string) => {
     set(() => ({ skills: skills }));
+  },
+  updateProjects: (projects: string) => {
+    set(() => ({ projects: projects}))
+  },
+  updateExperience: (experience: string) => {
+    set(() => ({ experience: experience }))
   },
   updatePhonenumber: (phonenumber: string) => {
     set(() => ({ phonenumber: phonenumber }));

@@ -16,9 +16,13 @@ const Dashboard = () => {
   const updateEmail = useUserStore((state) => state.updateEmail);
   const updatePassword = useUserStore((state) => state.updatePassword);
   const updateAddress = useUserStore((state) => state.updateAddress);
+  const updateUnityid = useUserStore((state) => state.updateUnityid);
+  const updateStudentid = useUserStore((state) => state.updateStudentid);
   const updateRole = useUserStore((state) => state.updateRole);
   const updateDob = useUserStore((state) => state.updateDob);
   const updateSkills = useUserStore((state) => state.updateSkills);
+  const updateProjects = useUserStore((state) => state.updateProjects);
+  const updateExperience = useUserStore((state) => state.updateExperience);
   const updatePhonenumber = useUserStore((state) => state.updatePhonenumber);
   const updateId = useUserStore((state) => state.updateId);
   const updateAvailability = useUserStore((state) => state.updateAvailability);
@@ -57,9 +61,13 @@ const Dashboard = () => {
       updateEmail(userInfo.email);
       updatePassword(userInfo.password);
       updateAddress(userInfo.address);
+      updateUnityid(userInfo.unityid);
+      updateStudentid(userInfo.studentid);
       updateRole(userInfo.role);
       updateDob(userInfo.dob);
       updateSkills(userInfo.skills);
+      updateProjects(userInfo.projects);
+      updateExperience(userInfo.experience);
       updatePhonenumber(userInfo.phonenumber);
       updateId(userInfo._id);
       updateAvailability(userInfo.availability);
@@ -172,3 +180,7 @@ const Dashboard = () => {
   );
 };
 export default Dashboard;
+function updateExpirence(experience: any) {
+  throw new Error("Function not implemented.");
+}
+

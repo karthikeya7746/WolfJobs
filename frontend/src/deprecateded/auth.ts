@@ -27,9 +27,13 @@ export function signup(
   password: string,
   confirmPassword: string,
   name: string,
+  unityid: string,
+  studentid: string,
   role: string,
   affiliation: string,
   skills: string,
+  projects: string,
+  experience: string,
   navigate: any
 ) {
   const url = signupURL;
@@ -43,8 +47,12 @@ export function signup(
       password,
       confirm_password: confirmPassword,
       name,
+      unityid,
+      studentid,
       role,
       skills,
+      projects,
+      experience,
       affiliation,
     }),
   })

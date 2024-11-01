@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    unityid: {
+      type: String,
+      required: true,
+    },
     role: {
       type: String,
       required: true,
@@ -51,6 +55,14 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
     skills: {
+      type: String,
+      default: "",
+    },
+    projects: {
+      type: String,
+      default: "",
+    },
+    experience: {
       type: String,
       default: "",
     },
