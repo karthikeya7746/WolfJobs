@@ -607,3 +607,36 @@ module.exports.saveJob = async function (req, res) {
     });
   }
 };
+
+module.exports.saveJobList = async function (req, res) {
+  try {
+    const { userId } = req.params.id;
+
+    const savedJobs = await SavedJob.find(userId);
+    res.set("Access-Control-Allow-Origin","*")
+
+    if (savedJobs.length === 0) {
+      return res.status(200).json({
+        message: "No saved jobs found",
+        data: [],
+        success: true,
+      });
+    }
+    const jobIds = savedJobs.map((job) => job.jobId);
+
+    const jobs = await Job.find({ _id: { $in: jobIds } });
+
+    res.set("Access-Control-Allow-Origin", "*");
+    return res.status(200).json({
+      message: "Saved jobs retrieved successfully",
+      data: jobs,
+      success: true,
+    });
+  } catch (error) {
+    console.error("Error counting saved jobs:", error); 
+    return res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+    });
+  }
+};
