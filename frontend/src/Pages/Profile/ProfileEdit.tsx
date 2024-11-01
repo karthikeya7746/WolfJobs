@@ -20,9 +20,12 @@ type FormValues = {
   name: string;
   email: string;
   password: string;
+  unityid: string;
+  studentid: string;
   address: string;
   role: string;
   skills: string;
+  projects: string;
   experience: string;
   phonenumber: string;
   availability: string;
@@ -34,9 +37,12 @@ const ProfileEdit = ({ props }: { props: any }) => {
   const {
     name,
     email,
+    unityid,
+    studentid,
     address,
     role,
     skills,
+    projects,
     experience,
     phonenumber,
     availability,
@@ -48,9 +54,12 @@ const ProfileEdit = ({ props }: { props: any }) => {
     defaultValues: {
       name: name,
       email: email,
+      unityid: unityid,
+      studentid: studentid,
       address: address,
-      role,
+      role: role,
       skills: skills,
+      projects: projects,
       experience: experience,
       phonenumber: phonenumber,
       availability: availability,
@@ -77,11 +86,14 @@ const ProfileEdit = ({ props }: { props: any }) => {
       role,
       email,
       password,
+      unityid: data.unityid,
+      studentid: data.studentid,
       address: data.address,
       availability: availabilityDrop,
       hours: data.hours,
       gender: data.gender,
       skills: data.skills,
+      projects: data.projects,
       experience: data.experience,
       phonenumber: data.phonenumber,
     };
@@ -138,10 +150,40 @@ const ProfileEdit = ({ props }: { props: any }) => {
               value={email}
             />
             <TextField
+              label="Unityid"
+              type="text"
+              {...register("unityid")}
+              error={!!errors.unityid}
+              helperText={errors.unityid?.message}
+              sx={{
+                "& label": { paddingLeft: (theme) => theme.spacing(1) },
+                "& input": { paddingLeft: (theme) => theme.spacing(2.5) },
+                "& fieldset": {
+                  paddingLeft: (theme) => theme.spacing(1.5),
+                  borderRadius: "10px",
+                },
+              }}
+            />
+            <TextField
+              label="Studentid"
+              type="text"
+              {...register("studentid")}
+              error={!!errors.studentid}
+              helperText={errors.studentid?.message}
+              sx={{
+                "& label": { paddingLeft: (theme) => theme.spacing(1) },
+                "& input": { paddingLeft: (theme) => theme.spacing(2.5) },
+                "& fieldset": {
+                  paddingLeft: (theme) => theme.spacing(1.5),
+                  borderRadius: "10px",
+                },
+              }}
+            />
+            <TextField
               label="Role"
               type="text"
               {...register("role", {
-                required: "Email is required",
+                required: "role is required",
               })}
               error={!!errors.role}
               helperText={errors.role?.message}
@@ -186,7 +228,22 @@ const ProfileEdit = ({ props }: { props: any }) => {
                 },
               }}
             />
-             <TextField
+            <TextField
+              label="Projects"
+              type="text"
+              {...register("projects")}
+              error={!!errors.projects}
+              helperText={errors.projects?.message}
+              sx={{
+                "& label": { paddingLeft: (theme) => theme.spacing(1) },
+                "& input": { paddingLeft: (theme) => theme.spacing(2.5) },
+                "& fieldset": {
+                  paddingLeft: (theme) => theme.spacing(1.5),
+                  borderRadius: "10px",
+                },
+              }}
+            />
+            <TextField
               label="Experience"
               type="text"
               {...register("experience")}
