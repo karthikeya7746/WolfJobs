@@ -5,6 +5,8 @@ const History = require("../../../models/history");
 const Job = require("../../../models/job");
 const Application = require("../../../models/application");
 const AuthOtp = require("../../../models/authOtp");
+const SavedJob = require("../../../models/savedApplication");
+
 
 const nodemailer = require("nodemailer");
 
@@ -565,4 +567,43 @@ module.exports.verifyOtp = async function (req, res) {
   }
 };
 
+//Save job functionality
+module.exports.saveJob = async function (req, res) {
+  try {
+    const { userId, jobId } = req.body;
+    if (!userId || !jobId) {
+      return res.status(400).json({
+        message: "User ID and Job ID are required",
+        success: false,
+      });
+    }
+    console.log("User ID:", userId);
+    console.log("Job ID:", jobId);
+    let save_Job = await SavedJob.findOne({ userId: userId, jobId: jobId });
+    if (save_Job) {
+      await SavedJob.deleteOne({ _id: save_Job._id });
+      // Update the job's saved status to false
+      await Job.updateOne({ _id: jobId }, { saved: false });
 
+      res.set("Access-Control-Allow-Origin", "*");
+      return res.status(200).json({
+        message: "Job unsaved",
+        success: true,
+      });
+    } else {
+      let newSaveJob = await SavedJob.create({ userId: userId, jobId: jobId });
+      await Job.updateOne({ _id: jobId }, { saved: true });
+      res.set("Access-Control-Allow-Origin", "*");
+      return res.json(200, {
+        message: "Job saved",
+        data: { savedJob: newSaveJob },
+        success: true,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.json(500, {
+      message: "Internal Server Error",
+    });
+  }
+};
