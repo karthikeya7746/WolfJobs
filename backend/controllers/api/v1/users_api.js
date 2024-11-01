@@ -168,6 +168,7 @@ module.exports.editProfile = async function (req, res) {
     // user.dob = req.body.dob;
     check = req.body.skills;
     user.skills = check;
+    user.experience = req.body.experience;
     user.save();
     res.set("Access-Control-Allow-Origin", "*");
     return res.json(200, {
