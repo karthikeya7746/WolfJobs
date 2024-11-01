@@ -9,7 +9,13 @@ import JobsListView from "../../components/Job/JobListView";
 import JobDetailView from "../../components/Job/JobDetailView";
 import { useJobStore } from "../../store/JobStore";
 import { useApplicationStore } from "../../store/ApplicationStore";
-// const userId = useUserStore((state) => state.id);
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 
 const Explore = () => {
   const naviagte = useNavigate();
@@ -25,9 +31,8 @@ const Explore = () => {
   const updateGender = useUserStore((state) => state.updateGender);
   const updateHours = useUserStore((state) => state.updateHours);
   const updateIsLoggedIn = useUserStore((state) => state.updateIsLoggedIn);
-  const updateResume = useUserStore((state) => state.updateResume)
+  const updateResume = useUserStore((state) => state.updateResume);
   const updateResumeId = useUserStore((state) => state.updateResumeId);
-
 
   const updateApplicationList = useApplicationStore(
     (state) => state.updateApplicationList
@@ -45,9 +50,11 @@ const Explore = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredJobList, setFilteredJobList] = useState<Job[]>([]);
   const [sortHighestPay, setSortHighestPay] = useState(false);
-  const [sortAlphabeticallyByCity, setSortAlphabeticallyByCity] = useState(false);
+  const [sortAlphabeticallyByCity, setSortAlphabeticallyByCity] =
+    useState(false);
   const [sortByEmploymentType, setSortByEmploymentType] = useState(false);
-  const [showOpenJobs, setShowOpenJobs] = useState(true);  // true for open jobs, false for closed jobs
+  const [showOpenJobs, setShowOpenJobs] = useState(true); // true for open jobs, false for closed jobs
+  const [jobType, setJobType] = useState("all-jobs");
 
   const handleSearchChange = (event: any) => {
     setSearchTerm(event.target.value);
@@ -129,27 +136,42 @@ const Explore = () => {
     }
 
     if (sortHighestPay) {
-      updatedList = [...updatedList].sort((a, b) => parseFloat(b.pay) - parseFloat(a.pay));
+      updatedList = [...updatedList].sort(
+        (a, b) => parseFloat(b.pay) - parseFloat(a.pay)
+      );
     }
 
     if (sortAlphabeticallyByCity) {
-
       updatedList = [...updatedList].sort((a, b) => {
-        return a.location.localeCompare(b.location)
+        return a.location.localeCompare(b.location);
       });
     }
 
     if (sortByEmploymentType) {
-
       updatedList = [...updatedList].sort((a, b) => {
-        return a.type.localeCompare(b.type)
+        return a.type.localeCompare(b.type);
       });
     }
+    if (jobType !== "all-jobs") {
+      updatedList = updatedList.filter((job) =>
+        job.type.toLowerCase().includes(jobType.toLowerCase())
+      );
+    }
 
-    updatedList = updatedList.filter(job => showOpenJobs ? job.status === "open" : job.status === "closed");
+    updatedList = updatedList.filter((job) =>
+      showOpenJobs ? job.status === "open" : job.status === "closed"
+    );
 
     setFilteredJobList(updatedList);
-  }, [searchTerm, jobList, sortHighestPay, sortAlphabeticallyByCity, sortByEmploymentType, showOpenJobs]);
+  }, [
+    searchTerm,
+    jobList,
+    sortHighestPay,
+    sortAlphabeticallyByCity,
+    sortByEmploymentType,
+    showOpenJobs,
+    jobType,
+  ]);
 
   return (
     <>
@@ -164,23 +186,79 @@ const Explore = () => {
               className="w-full p-2"
             />
           </div>
-          <div>
-            <button onClick={handleSortChange} className="p-2 ml-2 border">
-              {sortHighestPay ? "Sort by High Pay : On" : "Sort by Highest Pay : Off"}
+          <div className="p-4 flex items-center gap-4">
+            <button
+              onClick={handleSortChange}
+              className="p-2 ml-2 border border-black rounded-lg"
+            >
+              {sortHighestPay
+                ? "Sort by High Pay : On"
+                : "Sort by Highest Pay : Off"}
             </button>
-            <button onClick={handleSortCityChange} className="p-2 ml-2 border">
-              {sortAlphabeticallyByCity ? "Sort by City : On" : "Sort by City : Off"}
+            <button
+              onClick={handleSortCityChange}
+              className="p-2 ml-2 border border-black rounded-lg"
+            >
+              {sortAlphabeticallyByCity
+                ? "Sort by City : On"
+                : "Sort by City : Off"}
             </button>
-            <button onClick={handleSortEmploymenyTypeChange} className="p-2 ml-2 border">
-              {sortByEmploymentType ? "Sort by Employment Type : On" : "Sort by Employment Type : Off"}
+            <button
+              onClick={handleSortEmploymenyTypeChange}
+              className="p-2 ml-2 border border-black rounded-lg"
+            >
+              {sortByEmploymentType
+                ? "Sort by Employment Type : On"
+                : "Sort by Employment Type : Off"}
             </button>
-            <button onClick={toggleJobStatus} className="p-2 ml-2 border">
+            <button
+              onClick={toggleJobStatus}
+              className="p-2 ml-2 border border-black rounded-lg"
+            >
               {showOpenJobs ? "Show Closed Jobs" : "Show Open Jobs"}
             </button>
+            <div style={{ gridTemplateRows: "auto auto" }}>
+              <FormControl sx={{ minWidth: 150 }}>
+                <InputLabel id="role-id">Job Type</InputLabel>
+
+                <Select
+                  value={jobType}
+                  labelId="role-id"
+                  label="Job Type"
+                  id="role"
+                  onChange={(e: SelectChangeEvent) => {
+                    setJobType(e.target.value);
+                  }}
+                  sx={{
+                    height: "40px",
+                    "& label": { paddingLeft: (theme) => theme.spacing(1) },
+                    "& input": { paddingLeft: (theme) => theme.spacing(2.5) },
+                    "& fieldset": {
+                      paddingLeft: (theme) => theme.spacing(0.75),
+                      borderRadius: "10px",
+                      borderColor: "black",
+                    },
+                  }}
+                >
+                  <MenuItem value={"all-jobs"}>All Jobs</MenuItem>
+                  <MenuItem value={"full-time"}>Full Time</MenuItem>
+                  <MenuItem value={"part-time"}>Part Time</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
           </div>
         </div>
         <div className="flex flex-row" style={{ height: "calc(100vh - 72px)" }}>
-          <JobsListView jobsList={filteredJobList} />
+          <JobsListView
+            jobsList={filteredJobList}
+            title={
+              jobType === "part-time"
+                ? "Part time"
+                : jobType === "full-time"
+                ? "Full time"
+                : "All Jobs"
+            }
+          />
           <JobDetailView />
         </div>
       </div>
