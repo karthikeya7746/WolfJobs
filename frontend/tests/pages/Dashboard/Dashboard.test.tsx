@@ -40,4 +40,46 @@ describe("Dashboard", () => {
       );
     </MemoryRouter>;
   });
+  test("Request for applications", async () => {
+    // Mock successful API response for fetching applications
+    mock
+      .onGet("http://localhost:8000/api/v1/users/fetchapplications")
+      .reply(200, {
+        application: [{ _id: "2", jobid: "123", status: "in review" }],
+      });
+
+    <MemoryRouter>
+      render(
+      <Dashboard />
+      );
+    </MemoryRouter>;
+  });
+  test("Request for applications", async () => {
+    // Mock successful API response for fetching applications
+    mock
+      .onGet("http://localhost:8000/api/v1/users/fetchapplications")
+      .reply(200, {
+        application: [{ _id: "3", jobid: "123", status: "rejected" }],
+      });
+
+    <MemoryRouter>
+      render(
+      <Dashboard />
+      );
+    </MemoryRouter>;
+  });
+  test("Request for applications", async () => {
+    // Mock successful API response for fetching applications
+    mock
+      .onGet("http://localhost:8000/api/v1/users/fetchapplications")
+      .reply(200, {
+        application: [{ _id: "67214e08dcb09ab4db642380", jobid: "671994557011a93fba149585", status: "screening", applicantskills: "Software Enginnering" }],
+      });
+
+    <MemoryRouter>
+      render(
+      <Dashboard />
+      );
+    </MemoryRouter>;
+  });
 });
