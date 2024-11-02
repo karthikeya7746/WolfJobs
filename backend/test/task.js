@@ -267,5 +267,31 @@ describe("POST /api/v1/users/saveJob", function () {
           done();
         });
     });
-  });  
+  }); 
+  
+  //test to display the list when there is no saved job 
+  // Test for retrieving an empty job list for a user with no saved jobs
+describe("GET /api/v1/users/savedJobList/:id", function () {
+    it("should retrieve an empty job list for a user with no saved jobs", function (done) {
+      const userId = "60e6f0f5b9f1c25b4845a7ef"; 
+      chai
+        .request("http://localhost:8000")
+        .get(`/api/v1/users/savedJobList/${userId}`)
+        .end((err, response) => {
+          if (err) {
+            console.error("Request error while retrieving saved job list:", err);
+            return done(err);
+          }
+  
+          response.should.have.status(200); 
+          response.body.should.be.a("object"); 
+          response.body.should.have.property("success").eql(true); 
+          response.body.should.have.property("message").eql("No saved jobs found"); 
+          response.body.should.have.property("data").eql([]); 
+  
+          done();
+        });
+    });
+  });
+  
 });
