@@ -40,4 +40,34 @@ describe("Explore", () => {
       );
     </MemoryRouter>;
   });
+  test("Request for applications", async () => {
+    // Mock successful API response for fetching applications
+    mock
+      .onGet("http://localhost:8000/api/v1/users/fetchapplications")
+      .reply(200, {
+        application: [{ _id: "2", jobid: "1234", status: "in review" }],
+      });
+
+    <MemoryRouter>
+      render(
+      <Explore />
+      );
+    </MemoryRouter>;
+  });
+  test("Request for applications", async () => {
+    // Mock successful API response for fetching applications
+    mock
+      .onGet("http://localhost:8000/api/v1/users/fetchapplications")
+      .reply(200, {
+        application: [{ _id: "67214e0ddcb09ab4db642388",
+          jobid: "671994b67011a93fba14958c",
+          jobname: "Barista", status: "screening" }],
+      });
+
+    <MemoryRouter>
+      render(
+      <Explore />
+      );
+    </MemoryRouter>;
+  });
 });
