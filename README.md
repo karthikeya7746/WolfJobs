@@ -32,28 +32,29 @@
 ![RestAPI](https://img.shields.io/badge/RestAPI-005571?style=for-the-badge&logo=restapi)
 
 # What's New:
+Role-based Job Filters: Users can filter job listings by type, such as part-time, full-time, co-op, or internship positions, allowing them to easily find opportunities that match their preferred work arrangement.
 
- - **New Screens Added!**
- - Branding, Colours and Typography
- - Components & States
- - Mutliple UI Screens _flows_ for Student & Manager Roles
- - [https://www.figma.com/file/sqt0gh5H7bZEkryKZ9jFnK/WolfJobs](https://www.figma.com/file/sqt0gh5H7bZEkryKZ9jFnK/WolfJobs)
+"Save Job" Screen: Provides a dedicated tab where users can save specific job listings to their accounts for quick access and future reference.
 
- - Seamless Resume Upload and Parsing: We've made it a breeze for applicants to submit their resumes for each job posting, while employers can effortlessly access and view the stored PDFs in MongoDB.
- - Precision Application Matching: Say goodbye to the uncertainty of job applications! With our enhanced system, applicants now have the power to identify which jobs align perfectly with their skills and qualifications. WolfJobs will analyze your profile and inform you if you're a strong fit for a position.
- - Revamped Job Sorting and Search:  Our revamped job sorting and search features allows you to easily organize opportunities by pay, city, and employment type. Plus, you can perform specific job searches to find the perfect match.
-- Stay Informed with the Notifications Tab: Introduced our brand-new Notifications tab to WolfJobs. Now, you can receive timely updates on the status of your applications, ensuring you're always in the know about your job prospects. 
+Enhanced Manager Profiles: Expands manager profiles to include additional information fields, offering candidates more insights into potential employers and fostering informed decision-making.
+
+Location-based Job Filters: Allows users to filter job searches by location, ensuring that job openings are relevant to their preferred geographic area.
+
+Salary Range Filters: Users can filter job listings based on a specified minimum and maximum salary range, helping them to find opportunities that meet their compensation expectations. 
 
 
 # Presentation Video
 
-[![Watch the video](https://github.com/deepr41/WolfJobs/blob/master/GIFs/Video%20Thumbnail.png)](http://www.youtube.com/watch?v=kMgLUrDiYEw)
+[![Watch the video](
+https://github.com/user-attachments/assets/270d0730-d5f2-48e6-813e-b4c63be2a2e4
+)
 
 # About Us
 
 Eager to dive into a side hustle or seize a full-time job opportunity? Look no further than WolfJobs. Our platform is the ultimate connector between recruiters in need of talent for both short-term and full-time roles and candidates seeking the freedom to choose. Dive in, earn your share, and opt out whenever you want – or stay on for a longer journey!
 
-At the heart of our bustling campus, WolfJobs stands out as the top student employment portal. Whether you're on the hunt for a short-term tech project, a part-time shift at a campus dining hall, or a full-time position that offers stability and growth, WolfJobs has a spot just for you.
+The job market for students seeking short-term roles lacks dedicated platforms, as traditional portals overwhelm users with permanent listings and complicate applications with inconsistent formats and poor job matching. The WolfJobs job portal aims to connect the student fraternity with the recruiters for both temporary and full-time job openings. The different recruiters can post temporary jobs, for which candidates apply without bothering about permanent associations.
+
 
 # Why WolfJobs?
 
@@ -74,6 +75,23 @@ At WolfJobs, it’s not just about work – it's about joining a vibrant pack wh
 ### Signup & Login
 
 ![Signup & Login](https://github.com/deepr41/WolfJobs/blob/GIF-Update/GIFs/Student%20-%20Sign%20Up%20%26%20Login.gif)
+
+### Job filter by Location
+
+![Filter by Location](https://github.com/user-attachments/assets/02e3a305-1ddb-46b8-b547-eb55c36c05f5)
+
+### Filter by Maximum and Minimum Salary
+
+![Filter by Max and Min salary](https://github.com/user-attachments/assets/496e6b18-5d82-4590-9f6d-a9437c5c9342)
+
+### Filter by Employment Type
+
+![Filter by Employment Type ](https://github.com/user-attachments/assets/7309d1d7-a21d-4d28-bb0e-3add5fffeaeb)
+
+### Save Jobs Screen
+
+![Save Jobs Screen](https://github.com/user-attachments/assets/824b4a50-2c08-4474-8f4c-e33e58b65ef1)
+
 
 ### Student Applies for Job
 
@@ -112,7 +130,7 @@ At WolfJobs, it’s not just about work – it's about joining a vibrant pack wh
 - Download and install the latest version of MongoDB from [MongoDB Official Website.](https://www.mongodb.com/try/download/community)
 - Make sure you have React version 18.0
 
-**Step 1: Clone the Repository from this [link](https://github.com/deepr41/WolfJobs.git)**
+**Step 1: Clone the Repository from this [link](https://github.com/karthikeya7746/WolfJobs)**
 
 **Step 2: Backend Setup**
 
@@ -195,6 +213,16 @@ Your app is ready to be deployed!
     <td align="center"><a href="https://github.com/Sarvesh-Somasundaram"><img src="https://avatars.githubusercontent.com/Sarvesh-Somasundaram" width="100px;" alt=""/><br /><b>Sarvesh Somasundaram</b></a><br /></td>
 
 
+   
+  </tr>
+</table>
+
+## Iteration 3:
+ <table>
+  <tr>
+    <td align="center"><a href="https://github.com/dubeavik002"><img src="https://avatars.githubusercontent.com/dubeavik002" width="100px;" alt=""/><br /><b>Avik Dube</b></a></td>
+    <td align="center"><a href="https://github.com/bittubharadwaj"><img src="https://avatars.githubusercontent.com/bittubharadwaj" width="100px;" alt=""/><br /><b>Bharadwaj Katna</b></a><br /></td>
+    <td align="center"><a href="https://github.com/karthikeya7746"><img src="https://avatars.githubusercontent.com/karthikeya7746" width="100px;" alt=""/><br /><b>Srinivasa Karthikeya Reddy</b></a><br /></td>
    
   </tr>
 </table>
